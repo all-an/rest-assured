@@ -3,6 +3,7 @@ package main.restassured;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
 
 public class HiRestAssured {
 	
@@ -13,6 +14,9 @@ public class HiRestAssured {
 		
 		System.out.println(response.getBody().asString().equals("Olá Teste Erro!"));
 		System.out.println(response.statusCode() == 201);
+		
+		ValidatableResponse validacao = response.then();
+		validacao.statusCode(201);
 	}
 
 }

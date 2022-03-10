@@ -1,4 +1,4 @@
-# EM DESENVOLVIMENTO
+## EM DESENVOLVIMENTO
 
 Curso Udemy - Testando API Rest com Rest-assured
 
@@ -11,8 +11,13 @@ Testando API Rest com Rest-assured
         </a>
 </p>
 
+## Requisitos para execução:
+
 - Java 17
-## Versão da dependência Rest-assured:
+- REST-assured 4.5
+- JUnit 4.13
+
+## Dependências:
 
 ```xml
 <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
@@ -22,5 +27,14 @@ Testando API Rest com Rest-assured
     <version>4.5.1</version>
     <scope>test</scope>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+    <scope>test</scope>
+</dependency>
+
 
 ```
