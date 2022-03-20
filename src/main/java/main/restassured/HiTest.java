@@ -87,5 +87,16 @@ public class HiTest {
 		assertThat("Luiz", anyOf(is("Luiz"), is("Joaquina")));
 		assertThat("Joaquina", allOf(startsWith("Joa"), endsWith("ina"), containsString("qui")));
 	}
+
+	@Test
+	public void mustValidateBody() {
+		given()
+			.when().get(url)
+			.then()
+				.statusCode(200)
+				.body(is("Ola Mundo!"))
+				.body(containsString("Mundo"))
+				.body(is(not(nullValue())));
+	}
 	
 }
