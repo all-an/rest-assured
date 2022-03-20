@@ -31,10 +31,10 @@ public class HiTest {
 		System.out.println(response.getBody().asString().equals("Ola Mundo!"));
 		System.out.println(response.statusCode() == 200);
 		
-		System.out.println(response.getBody().asString().equals("Olá Teste Erro!"));
+		System.out.println(response.getBody().asString().equals("Ola Teste Erro!"));
 		System.out.println(response.statusCode() == 201);
 		
-		//Assert.assertTrue(response.getBody().asString().equals("Olá Teste Erro!"));
+		//Assert.assertTrue(response.getBody().asString().equals("Ola Teste Erro!"));
 		
 		Assert.assertEquals(200, response.getStatusCode());
 		
@@ -56,11 +56,11 @@ public class HiTest {
 		get(url).then().statusCode(200);
 		
 		given()
-		//pré condições
+
 		.when().get(url)
-		//verificações
+
 		.then()
-		// .assertThat() //opcional
+
 		.statusCode(201);
 		
 	}
@@ -82,8 +82,8 @@ public class HiTest {
 		assertThat(impares, hasItem(1));
 		assertThat(impares, hasItems(1,5));
 		
-		assertThat("Maria", is(not("João")));
-		assertThat("Maria", not("João"));
+		assertThat("Maria", is(not("Joao")));
+		assertThat("Maria", not("Joao"));
 		assertThat("Luiz", anyOf(is("Luiz"), is("Joaquina")));
 		assertThat("Joaquina", allOf(startsWith("Joa"), endsWith("ina"), containsString("qui")));
 	}
