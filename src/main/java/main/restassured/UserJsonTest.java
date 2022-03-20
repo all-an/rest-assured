@@ -20,4 +20,33 @@ public class UserJsonTest {
 			.body("age", greaterThan(18));
 	}
 
+    @Test
+	public void mustVerifyFirstLevelAlternativeWays() {
+		Response response = RestAssured.request(Method.GET, url + "1");
+		
+		//path
+		System.out.println(response.path("id"));
+		assertEquals((Integer)1, response.path("id"));
+		assertEquals((Integer)1, response.path("%s", "id"));
+		
+		//jsonpath
+		JsonPath jsonPath = new JsonPath(response.asString());
+		assertEquals(1, jsonPath.getInt("id"));
+				
+		//from
+		int id = jsonPath.from(response.asString()).getInt("id");
+		assertEquals(1, id);
+	}
+	
+	@Test
+	public void mustVerifySecondLevel() {
+		given()
+		.when()
+			.get(url + "2")
+		.then()
+			.statusCode(200)
+			.body("name", containsString("Joaquina"))
+			.body("endereco.rua", is("Rua dos bobos"));  // second level rua
+	}
+
 }
