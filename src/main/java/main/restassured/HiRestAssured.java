@@ -12,7 +12,7 @@ public class HiRestAssured {
 		System.out.println(response.getBody().asString().equals("Ola Mundo!"));
 		System.out.println(response.statusCode() == 200);
 		
-		System.out.println(response.getBody().asString().equals("Olá Teste Erro!"));
+		System.out.println(response.getBody().asString().equals("Hello Teste Erro!")); //testando github online
 		System.out.println(response.statusCode() == 201);
 		
 		ValidatableResponse validacao = response.then();
