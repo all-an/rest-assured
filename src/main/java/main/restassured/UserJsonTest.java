@@ -5,12 +5,17 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
+import io.restassured.internal.ValidatableResponseImpl;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
+import io.restassured.response.ValidatableResponseOptions;
 
 public class UserJsonTest {
 
@@ -77,5 +82,52 @@ public class UserJsonTest {
 			.body("filhos.name", hasItems("Zezinho", "Luizinho"))
 		;
 	}
+	
+	@Test
+	public void mustReturnErrorNoUser() {
+		given()
+		.when()
+			.get(url + "4")
+		.then()
+			.statusCode(404)
+			.body("error", is("Usuário inexistente"))
+		;
+	}
+	
+	@Test
+	public void mustAssertRootList() {
+		given()
+		.when()
+			.get(url)
+		.then()
+			.statusCode(200)
+			.body("$", hasSize(3)) // $ root list
+			.body("", hasSize(3)) // root
+			.body("name", hasItems("João da Silva","Maria Joaquina","Ana Júlia"))
+			.body("age[1]", is(25))
+			.body("filhos.name", hasItem(Arrays.asList("Zezinho" , "Luizinho")))
+			.body("salary", contains(1234.5678f, 2500, null))
+		;
+		
+	}
+	
+	@Test
+	public void mustAssertAdvancedVerify() {
+		given()
+		.when()
+			.get(url)
+		.then()
+			.statusCode(200)
+			.body("$", hasSize(3)) // $ root list
+			.body("", hasSize(3)) // root
+			.body("age.findAll{it <= 25}.size()", is(2))
+		;
+		
+	}
+		
+		
+	
+	
+	
 	
 }
