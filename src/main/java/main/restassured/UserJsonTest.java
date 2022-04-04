@@ -5,6 +5,7 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -143,7 +144,18 @@ public class UserJsonTest {
 	}
 		
 		
-	
+	@Test
+	public void mustUnifyJsonPathWithJava() {
+		ArrayList<String> names = 
+			given()
+			.when()
+				.get(url)
+			.then()
+				.statusCode(200)
+				.extract().path("name.findAll{it.startsWith('Maria')}")
+			;
+		assertEquals(1, names.size());
+	}
 	
 	
 	
