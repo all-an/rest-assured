@@ -4,6 +4,7 @@ package main.restassured;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -155,6 +156,8 @@ public class UserJsonTest {
 				.extract().path("name.findAll{it.startsWith('Maria')}")
 			;
 		assertEquals(1, names.size());
+		assertTrue(names.get(0).equalsIgnoreCase("mArIA Joaquina"));
+		assertEquals(names.get(0).toUpperCase(), "maria joaquina".toUpperCase());
 	}
 	
 	
