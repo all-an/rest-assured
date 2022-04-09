@@ -6,25 +6,65 @@ import static org.hamcrest.Matchers.*;
 import java.util.ArrayList;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.internal.path.xml.NodeImpl;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 
-public class UserXMLTest {
+
+public class UserXMLTestWithStaticAtributes {
+	
+	public static RequestSpecification reqSpec;
+	public static ResponseSpecification resSpec;
+	
+	@BeforeClass
+	public static void setup() {
+		RestAssured.baseURI = "https://restapi.wcaquino.me";
+//		RestAssured.port = 443;
+//		RestAssured.basePath = "";
+		
+		RequestSpecBuilder reqBuilder = new RequestSpecBuilder();
+		reqBuilder.log(LogDetail.ALL);
+		reqSpec = reqBuilder.build();
+		
+		ResponseSpecBuilder resBuilder = new ResponseSpecBuilder();
+		resBuilder.expectStatusCode(200);
+		resSpec = resBuilder.build();
+		
+		RestAssured.requestSpecification = reqSpec;
+		RestAssured.responseSpecification = resSpec;
+	}
 
 	@Test
-	public void testLearningXMLtestingUser3() {
+	public void testLearningXMLtesting() {
+		
+//		RestAssured.baseURI = "https://restapi.wcaquino.me"; //acima
+//		RestAssured.port = 443;
+//		RestAssured.basePath = "/v2";
+		
+//		RestAssured.baseURI = "http://restapi.wcaquino.me";
+//		RestAssured.port = 80;
+		
 		given()
+//			.spec(reqSpec)
 		.when()
-			.get("https://restapi.wcaquino.me/usersXML/3")
+//			.get("/users")
+			.get("/usersXML/3")
 		.then()
-			.statusCode(200)
+//			.statusCode(200)
+//			.spec(resSpec)
 			
 			.rootPath("user")
 			.body("name", is("Ana Julia"))
 			.body("@id", is("3"))
 			
-			.rootPath("user.filhos")
+			.rootPath("/user.filhos")
 			.body("name.size()", is(2))
 			
 			.detachRootPath("filhos")
@@ -38,12 +78,12 @@ public class UserXMLTest {
 	}
 	
 	@Test
-	public void testAdvancedSearchXML() {
+	public void testB_AdvancedSearchXML() {
 		given()
 		.when()
-			.get("https://restapi.wcaquino.me/usersXML")
+			.get("/usersXML")
 		.then()
-			.statusCode(200)
+//			.statusCode(200)
 			.body("user.user.size()", is(3))
 			.body("user.user.findAll{it.age.toInteger() <= 25}.size()", is(2))
 			.body("users.user.@id", hasItems("1", "2", "3"))
@@ -57,12 +97,12 @@ public class UserXMLTest {
 	}
 	
 	@Test
-	public void mustDoAdvancedSearchWithXMLnJava() {
+	public void testC_mustDoAdvancedSearchWithXMLnJava() {
 		ArrayList<NodeImpl> nomes = given()
 		.when()
 			.get("/usersXML")
 		.then()
-			.statusCode(200)
+//			.statusCode(200)
 			.extract().path("users.user.name.findAll{it.toString().contains('n')}");
 		;
 		Assert.assertEquals(2, nomes.size());
@@ -71,12 +111,12 @@ public class UserXMLTest {
 	}
 	
 	@Test
-	public void testAdvancedSearchWithXPath() {
+	public void testD_AdvancedSearchWithXPath() {
 		given()
 		.when()
 			.get("/usersXML")
 		.then()
-			.statusCode(200) 
+//			.statusCode(200) 
 			.body(hasXPath("count(/users/user)", is("3")))
 			.body(hasXPath("/users/user[@id = '1']"))
 			.body(hasXPath("//user[@id = '2']"))
