@@ -36,5 +36,23 @@ Testando API Rest com Rest-assured
     <scope>test</scope>
 </dependency>
 
+<!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxrs -->
+<dependency>
+    <groupId>org.jboss.resteasy</groupId>
+    <artifactId>resteasy-jaxrs</artifactId>
+    <version>3.15.2.Final</version>
+</dependency>
+
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.8.5</version>
+</dependency>
+<dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>json-schema-validator</artifactId>
+    <version>4.0.0</version>
+</dependency>
+
 
 ```
