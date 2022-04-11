@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import io.restassured.http.ContentType;
 
-public class SendingDataTest {
+public class SendingDataTest2 {
 
 	@Test
 	public void deveEnviarValorViaQuery() {
@@ -43,6 +43,20 @@ public class SendingDataTest {
 		given()
 			.log().all()
 			.accept(ContentType.BINARY)
+		.when()
+			.get("https://restapi.wcaquino.me/v2/users")
+		.then()
+			.log().all()
+			.statusCode(200)
+			.contentType(ContentType.HTML)
+		;
+	}
+	
+	@Test
+	public void deveEnviarValorViaHeaderXML() {
+		given()
+			.log().all()
+			.accept(ContentType.XML) // atenção diferença do contentType no HTTP
 		.when()
 			.get("https://restapi.wcaquino.me/v2/users")
 		.then()

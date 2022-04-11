@@ -25,7 +25,6 @@ Testando API Rest com Rest-assured
     <groupId>io.rest-assured</groupId>
     <artifactId>rest-assured</artifactId>
     <version>4.5.1</version>
-    <scope>test</scope>
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/junit/junit -->
@@ -33,16 +32,13 @@ Testando API Rest com Rest-assured
     <groupId>junit</groupId>
     <artifactId>junit</artifactId>
     <version>4.13.2</version>
-    <scope>test</scope>
 </dependency>
-
 <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxrs -->
 <dependency>
     <groupId>org.jboss.resteasy</groupId>
     <artifactId>resteasy-jaxrs</artifactId>
     <version>3.15.2.Final</version>
 </dependency>
-
 <dependency>
     <groupId>com.google.code.gson</groupId>
     <artifactId>gson</artifactId>
@@ -52,6 +48,18 @@ Testando API Rest com Rest-assured
     <groupId>io.rest-assured</groupId>
     <artifactId>json-schema-validator</artifactId>
     <version>4.0.0</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxb-provider -->
+<dependency>
+    <groupId>org.jboss.resteasy</groupId>
+    <artifactId>resteasy-jaxb-provider</artifactId>
+    <version>6.0.0.Final</version>
+</dependency>
+
+<dependency>
+    <groupId>jakarta.activation</groupId>
+    <artifactId>jakarta.activation-api</artifactId>
+    <version>2.0.1</version>
 </dependency>
 
 
