@@ -1,6 +1,4 @@
-## EM DESENVOLVIMENTO
-
-Curso Udemy - Testando API Rest com Rest-assured
+## Curso Udemy - Testando API Rest com Rest-assured
 
 # rest-assured
 Testando API Rest com Rest-assured
