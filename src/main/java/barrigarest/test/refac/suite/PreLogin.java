@@ -23,7 +23,7 @@ import io.restassured.RestAssured;
 	SaldoTest.class,
 	AuthTest.class
 })
-public class Suite extends BaseTest {
+public class PreLogin extends BaseTest {
 
 	@BeforeClass
 	public static void login() {
