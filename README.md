@@ -1,7 +1,7 @@
-## Curso Udemy - Testando API Rest com Rest-assured
+## Testing Rest APIs with rest-assured
 
 # rest-assured
-Testando API Rest com Rest-assured
+Testing Rest APIs with rest-assured
 
 <p align="center">
         <a href="https://www.linkedin.com/in/allan-pereira-abrahao/">
@@ -9,13 +9,13 @@ Testando API Rest com Rest-assured
         </a>
 </p>
 
-## Requisitos para execução:
+## Requirements:
 
 - Java 17
 - REST-assured 4.5
 - JUnit 4.13
 
-## Dependências:
+## Dependencies:
 
 ```xml
 <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
